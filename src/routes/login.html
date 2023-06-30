@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <nav>
+        <div class="heading" onclick="toSite('')">
+            <img src="/src/assets/images/logo.png" alt="">
+            <h1>Wizard Code</h1>
+        </div>
+        <div class="links">
+            <li onclick="toSite('')"><a href="#">Home</a></li>
+            <li onclick="toSite('')"><a href="#statistics">Statistics</a></li>
+            <li onclick="toSite('')"><a href="#whyus">Why Us</a></li>
+            <li onclick="toSite('')"><a href="#offers">Offers</a></li>
+        </div>
+        <div class="get_started">
+            <button>Get started <i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div id="progress"></div>
+    </nav>
+
+    <section class="main">
+        <div class="security">
+            <div class="container">
+                <div class="top">
+                    <img src="../../src/assets/images/logo.png" alt="">
+                </div>
+                <div class="top_info">
+                    <h2>Welcome back!</h2>
+                    <p>Sign in to your account and get access to view dashboard and order websites</p>
+                </div>
+                <form id="log_form">
+                    <div>
+                        <span>Email address</span>
+                        <input type="email" id="log_email" placeholder="Enter your email" autocomplete="off">
+                    </div>
+                    <div>
+                        <span>Password</span>
+                        <input type="password" id="log_password" placeholder="Enter your password" autocomplete="off">
+                        <i class="fas fa-eye" id="show_pass"></i>
+                    </div>
+                    <button type="submit" class="ripple"><i class="fas fa-check"></i> Sign in</button>
+                    <p>You don't have an account? <span onclick="toSite('register')">Sign up</span></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="loading">
+        <img src="./src/assets/images/logo.png" alt="">
+    </div>
+    
+</body>
+</html>

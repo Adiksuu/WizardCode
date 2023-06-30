@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <nav>
+            <div class="heading" onclick="toSite('')">
+                <img src="/src/assets/images/logo.png" alt="" />
+                <h1>Wizard Code</h1>
+            </div>
+            <div class="links">
+                <li onclick="toSite('')"><a href="#">Home</a></li>
+                <li onclick="toSite('')">
+                    <a href="#statistics">Statistics</a>
+                </li>
+                <li onclick="toSite('')"><a href="#whyus">Why Us</a></li>
+                <li onclick="toSite('')"><a href="#offers">Offers</a></li>
+            </div>
+            <div class="get_started">
+                <button onclick="toSite('')">
+                    Home <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div id="progress"></div>
+        </nav>
+
+        <section class="main">
+            <div class="db_selection show">
+                <div class="heading">
+                    <h2>What do you need?</h2>
+                    <p>Select the tab that interests you at the moment</p>
+                </div>
+                <div class="boxes">
+                    <div class="box">
+                        <i class="fas fa-address-book"></i>
+                        <p>Contact Us (soon)</p>
+                    </div>
+                    <div class="box" onclick="db('create')">
+                        <i class="fas fa-basket-shopping"></i>
+                        <p>Make order</p>
+                    </div>
+                    <div class="box" onclick="db('orders')">
+                        <i class="fas fa-boxes-stacked"></i>
+                        <p>Orders</p>
+                    </div>
+                </div>
+            </div>
+            <div class="db_orders">
+                <div class="heading">
+                    <h2>Your orders</h2>
+                    <p>
+                        Here is the full list of the products you ordered, if
+                        something is not displayed for you, please Contact Us
+                    </p>
+                </div>
+                <div class="orders"></div>
+            </div>
+            <div class="db_create">
+                <div class="heading">
+                    <h2>Submit your order</h2>
+                    <p>
+                        Need your own website? Place an order by filling out the
+                        form below
+                    </p>
+                </div>
+                <div class="order_box">
+                    <div class="top">
+                        <h2>
+                            Choose from the options below to save unnecessary
+                            writing a long product description!
+                        </h2>
+                    </div>
+                    <div class="select">
+                        <h3>Do you want darkmode/lightmode changing?</h3>
+                        <div id="select_darkmode">
+                            <button>yes</button>
+                            <button class="active">no</button>
+                        </div>
+                    </div>
+                    <div class="select">
+                        <h3>Select website type</h3>
+                        <div id="select_type">
+                            <button class="active">Landing page</button>
+                            <button>Online store</button>
+                            <button>Blog</button>
+                            <button>Other</button>
+                        </div>
+                    </div>
+                    <div class="select">
+                        <h3>Type website main colors</h3>
+                        <div>
+                            <input placeholder="type main colors" id="orderColors"></input>
+                        </div>
+                    </div>
+                    <div class="select">
+                        <h3>Describe your website</h3>
+                        <div>
+                            <textarea placeholder="Type description here" id="order_description"></textarea>
+                        </div>
+                    </div>
+                    <div class="confirm">
+                        <button class="confirmOrder"><i class="fas fa-check"></i> Make order</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="loading">
+            <img src="./src/assets/images/logo.png" alt="">
+        </div>
+    </body>
+</html>

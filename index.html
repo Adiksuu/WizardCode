@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizard Code</title>
+    <link rel="stylesheet" href="./dist/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="shortcut icon" href="./src/assets/images/logo.png" type="image/x-icon">
+
+    <!-- FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHXPZywuWsijEKJNfmDP7ADqo4y_SiRPo",
+            authDomain: "wizard-code.firebaseapp.com",
+            projectId: "wizard-code",
+            storageBucket: "wizard-code.appspot.com",
+            messagingSenderId: "251026825243",
+            appId: "1:251026825243:web:e920f524bdff1a35e218be"
+        };
+      // Inicjuj Firebase SDK
+      firebase.initializeApp(firebaseConfig);
+
+      // Uzyskaj dostęp do bazy danych Firebase
+      const database = firebase.database();
+    </script>
+</head>
+<body>
+
+    <nav>
+        <div class="heading" onclick="toSite('')">
+            <img src="/src/assets/images/logo.png" alt="">
+            <h1>Wizard Code</h1>
+        </div>
+        <div class="links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#statistics">Statistics</a></li>
+            <li><a href="#whyus">Why Us</a></li>
+            <li><a href="#offers">Offers</a></li>
+        </div>
+        <div class="get_started">
+            <button onclick="toSite('register')">Get started <i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div id="progress"></div>
+    </nav>
+
+    <section class="main">
+        <div class="home section" id="home">
+            <div class="heading">
+                <h2>Guarantee of good quality of the purchased site</h2>
+                <p>If you are interested in buying a website, being sure that no one will deceive you and the purchased product will be of good quality, take a look at our offers</p>
+            </div>
+            <div class="buttons">
+                <button onclick="toSite('register')" class="ripple">Get started</button>
+                <button onclick="toSite('terms')" class="ripple"><i class="fas fa-exclamation-circle"></i> Shopping rules</button>
+            </div>
+        </div>
+        <div class="statistics section reveal" id="statistics">
+            <div class="stats_box">
+                <div class="stats">
+                    <i class="far fa-user"></i>
+                    <h3>0</h3>
+                    <p>Count of customers</p>
+                </div>
+                <div class="stats">
+                    <i class="far fa-face-smile-beam"></i>
+                    <h3>0</h3>
+                    <p>Count of satisfied customers</p>
+                </div>
+                <div class="stats">
+                    <i class="far fa-face-angry"></i>
+                    <h3>0</h3>
+                    <p>Count of unsatisfied customers</p>
+                </div>
+                <div class="stats">
+                    <i class="far fa-star"></i>
+                    <h3>0</h3>
+                    <p>Count of sites</p>
+                </div>
+            </div>
+        </div>
+        <div class="whyus section reveal" id="whyus">
+            <div class="heading">
+                <h2>Why Us?</h2>
+                <p>You're probably wondering why you should choose us</p>
+            </div>
+            <div class="boxes">
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-bolt-lightning"></i>
+                    </div>
+                    <div class="info">
+                        <h3>Quickly</h3>
+                        <p>The ordered pages are delivered to the right hands within 7 working days!</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div class="info">
+                        <h3>Efficiently</h3>
+                        <p>The purchased website is at the highest level, attracts attention!</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="info">
+                        <h3>Modern</h3>
+                        <p>We are up to date with ui/ux trends, thanks to which the obtained effect is always up to date</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="info">
+                        <h3>Flexible cost</h3>
+                        <p>With us, you don't have to worry about high prices, you decide how much you pay by choosing what you want</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="info">
+                        <h3>Website dashboard</h3>
+                        <p>Stop writing unnecessary messages from scratch, with what you want to get on the purchased page, select everything in the dashboard and enter a short description</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="info">
+                        <h3>Active support</h3>
+                        <p>If you have a problem with something, we are able to help you! Write to us and we will reply as soon as we can</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offers section reveal" id="offers">
+            <div class="heading">
+                <h2>Browse our prices</h2>
+                <p>Create an account or log in to an existing one, go to the dashboard and visit the "Make order" tab. Choose the functionalities you are interested in and describe your dream website in a few sentences</p>
+            </div>
+            <div class="buttons">
+                <button onclick="toSite('register')" class="ripple">Get started <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <div class="loading">
+        <img src="./src/assets/images/logo.png" alt="">
+    </div>
+    
+    <script src="./dist/app.js"></script>
+    
+</body>
+</html>

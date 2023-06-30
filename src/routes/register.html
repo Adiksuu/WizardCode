@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <nav>
+        <div class="heading" onclick="toSite('')">
+            <img src="/src/assets/images/logo.png" alt="">
+            <h1>Wizard Code</h1>
+        </div>
+        <div class="links">
+            <li onclick="toSite('')"><a href="#">Home</a></li>
+            <li onclick="toSite('')"><a href="#statistics">Statistics</a></li>
+            <li onclick="toSite('')"><a href="#whyus">Why Us</a></li>
+            <li onclick="toSite('')"><a href="#offers">Offers</a></li>
+        </div>
+        <div class="get_started">
+            <button>Get started <i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div id="progress"></div>
+    </nav>
+
+    <section class="main">
+        <div class="security">
+            <div class="container">
+                <div class="top">
+                    <img src="../../src/assets/images/logo.png" alt="">
+                </div>
+                <div class="top_info">
+                    <h2>Let's create your account</h2>
+                    <p>Create account and get access to view dashboard and order websites</p>
+                </div>
+                <form id="reg_form">
+                    <div>
+                        <span>Nickname</span>
+                        <input type="text" id="reg_nickname" placeholder="Enter your nickname" autocomplete="off">
+                    </div>
+                    <div>
+                        <span>Email address</span>
+                        <input type="email" id="reg_email" placeholder="Enter your email" autocomplete="off">
+                    </div>
+                    <div>
+                        <span>Password</span>
+                        <input type="password" id="reg_password" placeholder="Enter your password" autocomplete="off">
+                        <i class="fas fa-eye" id="show_pass"></i>
+                    </div>
+                    <button type="submit" class="ripple"><i class="fas fa-check"></i> Sign up</button>
+                    <p>You already have an account? <span onclick="toSite('login')">Sign in</span></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="loading">
+        <img src="./src/assets/images/logo.png" alt="">
+    </div>
+    
+</body>
+</html>
