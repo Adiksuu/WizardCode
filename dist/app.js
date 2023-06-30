@@ -27,14 +27,25 @@ if (route != "") {
 window.setTimeout(() => {
     if (!route.includes("dashboard"))
         return;
-    let database_ref = rdb.ref();
+    if (auth.currentUser) {
+        const email = auth.currentUser.email;
+        if (email === 'codeadiksuu@gmail.com') {
+            loadAllOrders();
+        }
+        else {
+            loadOrders();
+        }
+    }
+}, 2000);
+function loadOrders() {
+    const database_ref = rdb.ref();
     database_ref.child(`users/${auth.currentUser.uid}/orders`).once("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
-            let childData = childSnapshot.val();
+            const childData = childSnapshot.val();
             const orders = document.querySelector('.orders');
             const order = document.createElement('div');
             order.classList.add('order');
-            const id = orders.childElementCount;
+            const id = orders.childElementCount + 1;
             order.innerHTML = `
                 <div class="left">
                     <span>${id}</span>
@@ -68,7 +79,55 @@ window.setTimeout(() => {
             orders.appendChild(order);
         });
     });
-}, 1000);
+}
+function loadAllOrders() {
+    const database_ref = rdb.ref();
+    database_ref.child("users").once("value", function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            const childKey = childSnapshot.key;
+            const childAuthor = childSnapshot.val().email;
+            const childAuthorNickname = childSnapshot.val().nickname;
+            database_ref.child(`users/${childKey}/orders`).once("value", function (orderSnapshot) {
+                orderSnapshot.forEach(function (orderChildSnapshot) {
+                    const orders = document.querySelector('.orders');
+                    const order = document.createElement('div');
+                    order.classList.add('order');
+                    order.innerHTML = `
+                        <div class="left">
+                            <span>${childAuthor} | ${childAuthorNickname}</span>
+                            <img
+                                src="../../src/assets/images/logo.png"
+                                alt=""
+                            />
+                        </div>
+                        <div class="right">
+                            <div>
+                                <h2>Date</h2>
+                                <p>${orderChildSnapshot.val().date}</p>
+                            </div>
+                            <div>
+                                <h2>Time</h2>
+                                <p>${orderChildSnapshot.val().time}</p>
+                            </div>
+                            <div>
+                                <h2>Confirmed</h2>
+                                <p>Waiting...</p>
+                            </div>
+                            <div>
+                                <h2>Type</h2>
+                                <p>${orderChildSnapshot.val().type}</p>
+                            </div>
+                            <div>
+                                <h2>Cost</h2>
+                                <p>Waiting...</p>
+                            </div>
+                        </div>`;
+                    orders.appendChild(order);
+                });
+            });
+        });
+    });
+}
 window.setTimeout(() => {
     if (!route.includes('dashboard'))
         return;
@@ -78,7 +137,7 @@ window.setTimeout(() => {
         this.style.height = "auto";
         this.style.height = `${this.scrollHeight}px`;
     });
-}, 1000);
+}, 2000);
 window.setTimeout(() => {
     if (!route.includes('dashboard'))
         return;
@@ -157,7 +216,7 @@ window.setTimeout(() => {
         defaults();
         window.location.reload();
     }));
-}, 1000);
+}, 2000);
 function db(selection) {
     if (selection == 'orders') {
         const db_selection = document.querySelector('.db_selection');
@@ -172,6 +231,15 @@ function db(selection) {
         db_create.classList.add('show');
     }
 }
+setTimeout(() => {
+    if (auth.currentUser) {
+        const email = auth.currentUser.email;
+        if (email == 'codeadiksuu@gmail.com') {
+            const user_tier = document.querySelector('.user_tier');
+            user_tier.classList.add('show');
+        }
+    }
+}, 2000);
 const auth = firebase.auth();
 const rdb = firebase.database();
 window.setTimeout(() => {
@@ -194,7 +262,7 @@ window.setTimeout(() => {
 window.setTimeout(() => {
     const loading = document.querySelector('.loading');
     loading.classList.add('hide');
-}, 4500);
+}, 2500);
 window.addEventListener("scroll", reveal);
 function reveal() {
     var reveals = document.querySelectorAll(".reveal");
@@ -242,7 +310,7 @@ function updateStats() {
 }
 setTimeout(() => {
     updateStats();
-}, 5500);
+}, 3500);
 const stats_counters = {
     1: '1',
     2: '1',
@@ -300,7 +368,7 @@ window.setTimeout(() => {
             show_pass.classList.replace("fa-eye-slash", "fa-eye");
         }
     });
-}, 1000);
+}, 2000);
 function login(email, password) {
     auth.signInWithEmailAndPassword(email, password)
         .then(function () {
@@ -359,7 +427,7 @@ window.setTimeout(() => {
             show_pass.classList.replace("fa-eye-slash", "fa-eye");
         }
     });
-}, 1000);
+}, 2000);
 function register(email, password, nickname) {
     auth.createUserWithEmailAndPassword(email, password)
         .then(function () {

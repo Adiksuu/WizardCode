@@ -27,4 +27,4 @@ function updateStats() {
 
 setTimeout(() => {
     updateStats()
-}, 5500);
+}, 3500);

@@ -13,3 +13,15 @@ function db(selection: string) {
         db_create.classList.add('show')
     }
 }
+
+setTimeout(() => {
+    if (auth.currentUser) {
+        const email: String = auth.currentUser.email
+
+        if (email == 'codeadiksuu@gmail.com') {
+            const user_tier: HTMLDivElement = document.querySelector('.user_tier')
+
+            user_tier.classList.add('show')
+        }
+    }
+}, 2000);

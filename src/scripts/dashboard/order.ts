@@ -9,7 +9,7 @@ window.setTimeout(() => {
         this.style.height = "auto";
         this.style.height = `${this.scrollHeight}px`;
     });
-}, 1000);
+}, 2000);
 
 window.setTimeout(() => {
 
@@ -108,4 +108,4 @@ window.setTimeout(() => {
         window.location.reload()
     })
 
-}, 1000)
+}, 2000)

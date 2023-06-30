@@ -1,19 +1,31 @@
 window.setTimeout(() => {
     if (!route.includes("dashboard")) return;
 
-    let database_ref = rdb.ref();
+    if (auth.currentUser) {
+        const email: string = auth.currentUser.email;
+
+        if (email === 'codeadiksuu@gmail.com') {
+            loadAllOrders();
+        } else {
+            loadOrders();
+        }
+    }
+}, 2000);
+
+function loadOrders() {
+    const database_ref = rdb.ref();
 
     database_ref.child(`users/${auth.currentUser.uid}/orders`).once("value", function (snapshot: any) {
         snapshot.forEach(function (childSnapshot: any) {
-            let childData = childSnapshot.val();  
+            const childData = childSnapshot.val();  
 
-            const orders = document.querySelector('.orders')
+            const orders = document.querySelector('.orders');
 
-            const order = document.createElement('div')
+            const order = document.createElement('div');
 
-            order.classList.add('order')
+            order.classList.add('order');
 
-            const id = orders.childElementCount
+            const id = orders.childElementCount + 1;
 
             order.innerHTML = `
                 <div class="left">
@@ -44,10 +56,64 @@ window.setTimeout(() => {
                         <h2>Cost</h2>
                         <p>Waiting...</p>
                     </div>
-                </div>`
+                </div>`;
 
-            orders.appendChild(order)
+            orders.appendChild(order);
         });
     });
-    
-}, 1000);
+}
+
+function loadAllOrders() {
+    const database_ref = rdb.ref();
+
+    database_ref.child("users").once("value", function (snapshot: any) {
+        snapshot.forEach(function (childSnapshot: any) {
+            const childKey = childSnapshot.key;
+            const childAuthor = childSnapshot.val().email;
+            const childAuthorNickname = childSnapshot.val().nickname;
+
+            database_ref.child(`users/${childKey}/orders`).once("value", function (orderSnapshot: any) {
+                orderSnapshot.forEach(function (orderChildSnapshot: any) {
+                    const orders = document.querySelector('.orders');
+
+                    const order = document.createElement('div');
+
+                    order.classList.add('order');
+
+                    order.innerHTML = `
+                        <div class="left">
+                            <span>${childAuthor} | ${childAuthorNickname}</span>
+                            <img
+                                src="../../src/assets/images/logo.png"
+                                alt=""
+                            />
+                        </div>
+                        <div class="right">
+                            <div>
+                                <h2>Date</h2>
+                                <p>${orderChildSnapshot.val().date}</p>
+                            </div>
+                            <div>
+                                <h2>Time</h2>
+                                <p>${orderChildSnapshot.val().time}</p>
+                            </div>
+                            <div>
+                                <h2>Confirmed</h2>
+                                <p>Waiting...</p>
+                            </div>
+                            <div>
+                                <h2>Type</h2>
+                                <p>${orderChildSnapshot.val().type}</p>
+                            </div>
+                            <div>
+                                <h2>Cost</h2>
+                                <p>Waiting...</p>
+                            </div>
+                        </div>`;
+
+                    orders.appendChild(order);
+                });
+            });
+        });
+    });
+}

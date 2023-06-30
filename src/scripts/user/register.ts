@@ -50,7 +50,7 @@ window.setTimeout(() => {
             show_pass.classList.replace("fa-eye-slash", "fa-eye");
         }
     });
-}, 1000);
+}, 2000);
 
 function register(email: String, password: String, nickname: String) {
     auth.createUserWithEmailAndPassword(email, password)
