@@ -786,7 +786,7 @@ section.main .db_create.show {
     font-size: 14px;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   nav {
     padding: 0 16px;
   }
