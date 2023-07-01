@@ -102,6 +102,39 @@ nav .get_started button::before {
   z-index: -1;
   transition: 0.3s linear;
 }
+nav .mobile {
+  display: none;
+  align-items: center;
+  position: absolute;
+  right: 16px;
+}
+nav .mobile button {
+  height: 32px;
+  width: 32px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1;
+}
+nav .mobile button i {
+  font-size: 20px;
+}
+nav.mobile .heading {
+  z-index: 1;
+}
+nav.mobile .links {
+  height: 100%;
+  width: 100%;
+  background: #0a1128;
+  position: fixed;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 128px 0;
+  flex-direction: column;
+  display: flex;
+}
 
 section.main {
   width: calc(100% - 96px);
@@ -178,8 +211,6 @@ section.main .statistics .stats_box {
   border-radius: 16px;
   display: flex;
   align-items: center;
-  padding: 0 16px;
-  gap: 16px;
   transition: 0.2s linear;
 }
 section.main .statistics .stats_box:hover {
@@ -818,7 +849,10 @@ section.main .db_create.show {
     display: none;
   }
   nav .get_started {
-    right: 16px;
+    right: 72px;
+  }
+  nav .mobile {
+    display: flex;
   }
   section.main {
     width: calc(100% - 16px);

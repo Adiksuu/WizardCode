@@ -275,6 +275,10 @@ function reveal() {
         }
     }
 }
+function activeMobile() {
+    const nav = document.querySelector('nav');
+    nav.classList.toggle('mobile');
+}
 window.addEventListener("scroll", () => {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;

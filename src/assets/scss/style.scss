@@ -5,7 +5,7 @@ $color-black: #0f0f0f;
 $color-white: #fff;
 $color-blue-dark: #0a1128;
 $color-blue-medium: #001f54;
-$color-blue-light: #005db5;
+$color-blue-light: #0084ff;
 
 * {
     margin: 0;
@@ -113,6 +113,41 @@ nav {
             }
         }
     }
+    .mobile {
+        display: none;
+        align-items: center;
+        position: absolute;
+        right: 16px;
+        button {
+            height: 32px;
+            width: 32px;
+            background: transparent;
+            color: $color-white;
+            cursor: pointer;
+            z-index: 1;
+            i {
+                font-size: 20px;
+            }
+        }
+    }
+    &.mobile {
+        .heading {
+            z-index: 1;
+        }
+        .links {
+            height: 100%;
+            width: 100%;
+            background: $color-blue-dark;
+            position: fixed;
+            top: 0;
+            left: 0;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 128px 0;
+            flex-direction: column;
+            display: flex;
+        }
+    }
 }
 
 section.main {
@@ -188,8 +223,6 @@ section.main {
             border-radius: 16px;
             display: flex;
             align-items: center;
-            padding: 0 16px;
-            gap: 16px;
             transition: 0.2s linear;
             &:hover {
                 transform: translateY(-15px);
@@ -797,7 +830,7 @@ section.main {
 
 ::-webkit-scrollbar-track {
     border-radius: 5px;
-    background: #0f0f0f;
+    background: $color-black;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -843,7 +876,10 @@ section.main {
             display: none;
         }
         .get_started {
-            right: 16px;
+            right: 72px;
+        }
+        .mobile {
+            display: flex;
         }
     }
     section.main {
@@ -953,7 +989,7 @@ section.main {
 
 .ripple_effect {
     position: absolute;
-    background: #ffffff10;
+    background: #ffffff22;
     transform: translate(-50%, -50%);
     pointer-events: none;
     border-radius: 50%;
@@ -965,8 +1001,10 @@ section.main {
 @keyframes animate {
     0% {
         transform: scale(1);
+        opacity: 1;
     }
     100% {
         transform: scale(75);
+        opacity: 0;
     }
 }
