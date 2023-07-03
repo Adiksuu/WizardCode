@@ -11,6 +11,12 @@ function db(selection: string) {
 
         db_selection.classList.remove('show')
         db_create.classList.add('show')
+    } else if (selection == 'mails') {
+        const db_selection: HTMLDivElement = document.querySelector('.db_selection')
+        const db_mails: HTMLDivElement = document.querySelector('.db_mails')
+
+        db_selection.classList.remove('show')
+        db_mails.classList.add('show')
     }
 }
 

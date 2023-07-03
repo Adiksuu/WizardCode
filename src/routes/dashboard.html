@@ -32,9 +32,9 @@
                     <p>Select the tab that interests you at the moment</p>
                 </div>
                 <div class="boxes">
-                    <div class="box">
+                    <div class="box" onclick="db('mails')">
                         <i class="fas fa-address-book"></i>
-                        <p>Contact Us (soon)</p>
+                        <p>Contact Us</p>
                     </div>
                     <div class="box" onclick="db('create')">
                         <i class="fas fa-basket-shopping"></i>
@@ -47,6 +47,44 @@
                 </div>
                 <div class="user_tier">
                     <span><i class="fas fa-crown"></i> Admin</span>
+                </div>
+            </div>
+            <div class="db_mails">
+                <div class="heading">
+                    <h2>Send mail</h2>
+                    <p>
+                        If you have any questions or comments, feel free to send an email!
+                    </p>
+                </div>
+                <div class="mail_box">
+                    <div class="top">
+                        <h2>
+                            Fill in the inputs below and send an e-mail
+                        </h2>
+                    </div>
+                    <div class="select">
+                        <h3>Type mail title</h3>
+                        <div>
+                            <input placeholder="Type mail title..." id="mailTitle"></input>
+                        </div>
+                    </div>
+                    <div class="select">
+                        <h3>Mail message</h3>
+                        <div>
+                            <textarea placeholder="Type message..." id="mailMessage"></textarea>
+                        </div>
+                    </div>
+                    <div class="confirm">
+                        <button class="confirmMail"><i class="fas fa-check"></i> Send mail</button>
+                    </div>
+                </div>
+                <div class="mails_list">
+                    <div class="heading">
+                        <h2>Your mails</h2>
+                        <p>
+                            Here is the full list of the your sended mails
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="db_orders">

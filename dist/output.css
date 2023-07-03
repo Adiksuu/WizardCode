@@ -597,6 +597,188 @@ section.main .db_selection .user_tier span {
   align-items: center;
   gap: 8px;
 }
+section.main .db_mails {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+section.main .db_mails .heading {
+  margin-top: 128px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+section.main .db_mails .heading h2 {
+  color: #fff;
+  font-weight: 600;
+  font-size: 48px;
+}
+section.main .db_mails .heading p {
+  font-size: 13px;
+  color: #a4a4a4;
+}
+section.main .db_mails .mail_box {
+  background: rgba(255, 255, 255, 0.062745098);
+  height: fit-content;
+  width: 556px;
+  margin-top: 64px;
+  border-radius: 4px;
+  padding: 16px;
+}
+section.main .db_mails .mail_box .top {
+  margin-bottom: 32px;
+}
+section.main .db_mails .mail_box .top h2 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+}
+section.main .db_mails .mail_box .select {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+section.main .db_mails .mail_box .select h3 {
+  color: #0084ff;
+  font-weight: 600;
+  font-size: 14px;
+}
+section.main .db_mails .mail_box .select div {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+section.main .db_mails .mail_box .select div button,
+section.main .db_mails .mail_box .select div input {
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #0084ff;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 3px 13px;
+  border: 2px solid transparent;
+  transition: 0.2s linear;
+}
+section.main .db_mails .mail_box .select div button.active,
+section.main .db_mails .mail_box .select div input.active {
+  border: 2px solid #fff;
+}
+section.main .db_mails .mail_box .select div input {
+  background: transparent;
+  border: 2px solid #0084ff;
+  cursor: text;
+}
+section.main .db_mails .mail_box .select div input::placeholder {
+  color: #a4a4a4;
+}
+section.main .db_mails .mail_box .select div input.error {
+  border: 2px solid rgba(255, 34, 0, 0.631372549);
+}
+section.main .db_mails .mail_box .select div textarea {
+  min-height: 36px;
+  padding: 8px;
+  min-width: 100%;
+  background: transparent;
+  color: #fff;
+  border: 2px solid #0084ff;
+  border-radius: 4px;
+  overflow-y: hidden;
+  resize: none;
+}
+section.main .db_mails .mail_box .select div textarea.error {
+  border: 2px solid rgba(255, 34, 0, 0.631372549);
+}
+section.main .db_mails .mail_box .confirm button {
+  height: 28px;
+  width: 100%;
+  background: #0084ff;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 3px 13px;
+  border: 2px solid transparent;
+  transition: 0.2s linear;
+}
+section.main .db_mails .mail_box .confirm button:hover {
+  filter: brightness(1.2);
+}
+section.main .db_mails .mails_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  margin-top: 128px;
+}
+section.main .db_mails .mails_list .mail {
+  height: 72px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.062745098);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 32px;
+  cursor: pointer;
+  transition: 0.2s linear;
+}
+section.main .db_mails .mails_list .mail:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.0823529412);
+  box-shadow: 0 0px 5px 2px rgba(39, 46, 52, 0.4823529412);
+}
+section.main .db_mails .mails_list .mail .left {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+section.main .db_mails .mails_list .mail .left img {
+  height: 48px;
+}
+section.main .db_mails .mails_list .mail .left span {
+  color: #0084ff;
+  font-weight: 600;
+  font-size: 18px;
+  white-space: nowrap;
+}
+section.main .db_mails .mails_list .mail .right {
+  display: flex;
+  gap: 32px;
+  width: -webkit-fill-available;
+  justify-content: flex-end;
+}
+section.main .db_mails .mails_list .mail .right h2 {
+  font-size: 17px;
+  text-transform: uppercase;
+  color: #fff;
+}
+section.main .db_mails .mails_list .mail .right p {
+  color: #a4a4a4;
+  font-size: 12px;
+  font-weight: 600;
+}
+section.main .db_mails .mails_list .mail .right button {
+  height: 20px;
+  width: 128px;
+  font-weight: 600;
+  background: #0084ff;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
 section.main .db_orders {
   width: 100%;
   display: flex;
@@ -795,12 +977,12 @@ section.main .db_create .order_box .confirm button:hover {
 }
 section.main .db_selection,
 section.main .db_orders,
-section.main .db_create {
+section.main .db_create, section.main .db_mails {
   display: none;
 }
 section.main .db_selection.show,
 section.main .db_orders.show,
-section.main .db_create.show {
+section.main .db_create.show, section.main .db_mails.show {
   display: flex;
 }
 
@@ -820,21 +1002,21 @@ section.main .db_create.show {
 }
 
 @media screen and (max-width: 1000px) {
-  section.main .db_orders .orders {
+  section.main .db_orders .orders, section.main .db_orders .mails_list, section.main .db_mails .orders, section.main .db_mails .mails_list {
     width: 100%;
   }
-  section.main .db_orders .orders .order {
+  section.main .db_orders .orders .order, section.main .db_orders .orders .mail, section.main .db_orders .mails_list .order, section.main .db_orders .mails_list .mail, section.main .db_mails .orders .order, section.main .db_mails .orders .mail, section.main .db_mails .mails_list .order, section.main .db_mails .mails_list .mail {
     height: 115px;
   }
-  section.main .db_orders .orders .order .left {
+  section.main .db_orders .orders .order .left, section.main .db_orders .orders .mail .left, section.main .db_orders .mails_list .order .left, section.main .db_orders .mails_list .mail .left, section.main .db_mails .orders .order .left, section.main .db_mails .orders .mail .left, section.main .db_mails .mails_list .order .left, section.main .db_mails .mails_list .mail .left {
     display: none;
   }
-  section.main .db_orders .orders .order .right {
+  section.main .db_orders .orders .order .right, section.main .db_orders .orders .mail .right, section.main .db_orders .mails_list .order .right, section.main .db_orders .mails_list .mail .right, section.main .db_mails .orders .order .right, section.main .db_mails .orders .mail .right, section.main .db_mails .mails_list .order .right, section.main .db_mails .mails_list .mail .right {
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
   }
-  section.main .db_orders .orders .order .right div h2 {
+  section.main .db_orders .orders .order .right div h2, section.main .db_orders .orders .mail .right div h2, section.main .db_orders .mails_list .order .right div h2, section.main .db_orders .mails_list .mail .right div h2, section.main .db_mails .orders .order .right div h2, section.main .db_mails .orders .mail .right div h2, section.main .db_mails .mails_list .order .right div h2, section.main .db_mails .mails_list .mail .right div h2 {
     font-size: 14px;
   }
 }

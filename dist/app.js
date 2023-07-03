@@ -30,6 +30,89 @@ window.setTimeout(() => {
     if (auth.currentUser) {
         const email = auth.currentUser.email;
         if (email === 'codeadiksuu@gmail.com') {
+            loadAllMails();
+        }
+        else {
+            loadMails();
+        }
+    }
+}, 2000);
+function loadMails() {
+    const database_ref = rdb.ref();
+    database_ref.child(`mails/`).once("value", function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            const childData = childSnapshot.val();
+            const email = auth.currentUser.email;
+            if (childData.author == email) {
+                const mails = document.querySelector('.mails_list');
+                const mail = document.createElement('div');
+                mail.classList.add('order');
+                mail.classList.add('mail');
+                mail.innerHTML = `
+                    <div class="left">
+                        <img src="../../src/assets/images/logo.png" alt=""/>
+                    </div>
+                    <div class="right">
+                        <div>
+                            <h2>Title</h2>
+                            <p>${childData.title}</p>
+                        </div>
+                        <div>
+                            <h2>Message</h2>
+                            <button onclick="copyMailMessage('${childData.message}')">Click to copy</button>
+                        </div>
+                    </div>`;
+                mails.appendChild(mail);
+            }
+        });
+    });
+}
+function loadAllMails() {
+    const database_ref = rdb.ref();
+    database_ref.child(`mails/`).once("value", function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            const childData = childSnapshot.val();
+            const mails = document.querySelector('.mails_list');
+            const mail = document.createElement('div');
+            mail.classList.add('order');
+            mail.classList.add('mail');
+            mail.innerHTML = `
+                <div class="left">
+                    <img src="../../src/assets/images/logo.png" alt=""/>
+                </div>
+                <div class="right">
+                    <div>
+                        <h2>Author</h2>
+                        <p>${childData.author}</p>
+                    </div>
+                    <div>
+                        <h2>Title</h2>
+                        <p>${childData.title}</p>
+                    </div>
+                    <div>
+                        <h2>Message</h2>
+                        <button onclick="copyMailMessage('${childData.message}')">Click to copy</button>
+                    </div>
+                </div>`;
+            mails.appendChild(mail);
+        });
+    });
+}
+function copyMailMessage(message) {
+    const mails = document.querySelector('.mails_list');
+    const area = document.createElement('textarea');
+    area.value = message;
+    mails.appendChild(area);
+    area.select();
+    document.execCommand('copy');
+    mails.removeChild(area);
+}
+window.setTimeout(() => {
+    if (!route.includes("dashboard"))
+        return;
+    if (auth.currentUser) {
+        const email = auth.currentUser.email;
+        if (email === 'codeadiksuu@gmail.com') {
             loadAllOrders();
         }
         else {
@@ -230,6 +313,12 @@ function db(selection) {
         db_selection.classList.remove('show');
         db_create.classList.add('show');
     }
+    else if (selection == 'mails') {
+        const db_selection = document.querySelector('.db_selection');
+        const db_mails = document.querySelector('.db_mails');
+        db_selection.classList.remove('show');
+        db_mails.classList.add('show');
+    }
 }
 setTimeout(() => {
     if (auth.currentUser) {
@@ -239,6 +328,27 @@ setTimeout(() => {
             user_tier.classList.add('show');
         }
     }
+}, 2000);
+setTimeout(() => {
+    if (!route.includes('dashboard'))
+        return;
+    const mailTitle = document.querySelector('#mailTitle');
+    const mailMessage = document.querySelector('#mailMessage');
+    const mailConfirm = document.querySelector('.confirmMail');
+    mailConfirm.addEventListener('click', () => __awaiter(this, void 0, void 0, function* () {
+        if (mailTitle.value == '' && mailMessage.value == '')
+            return;
+        let user = auth.currentUser;
+        let database_ref = rdb.ref();
+        let random = Math.floor(Math.random() * 9999999);
+        let mail_data = {
+            title: mailTitle.value,
+            message: mailMessage.value,
+            author: user.email
+        };
+        yield database_ref.child(`mails/${random}`).set(mail_data);
+        window.location.reload();
+    }));
 }, 2000);
 const auth = firebase.auth();
 const rdb = firebase.database();

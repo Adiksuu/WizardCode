@@ -616,6 +616,189 @@ section.main {
             }
         }
     }
+    .db_mails {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .heading {
+            margin-top: 128px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            h2 {
+                color: $color-white;
+                font-weight: 600;
+                font-size: 48px;
+            }
+            p {
+                font-size: 13px;
+                color: #a4a4a4;
+            }
+        }
+        .mail_box {
+            background: #ffffff10;
+            height: fit-content;
+            width: 556px;
+            margin-top: 64px;
+            border-radius: 4px;
+            padding: 16px;
+            .top {
+                margin-bottom: 32px;
+                h2 {
+                    color: $color-white;
+                    font-weight: 700;
+                    font-size: 13px;
+                }
+            }
+            .select {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                margin-bottom: 16px;
+                h3 {
+                    color: $color-blue-light;
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+                div {
+                    display: flex;
+                    gap: 8px;
+                    width: 100%;
+                    button,
+                    input {
+                        height: 28px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        background: $color-blue-light;
+                        color: $color-white;
+                        cursor: pointer;
+                        font-weight: 500;
+                        text-transform: uppercase;
+                        border-radius: 4px;
+                        padding: 3px 13px;
+                        border: 2px solid transparent;
+                        transition: 0.2s linear;
+                        &.active {
+                            border: 2px solid $color-white;
+                        }
+                    }
+                    input {
+                        background: transparent;
+                        border: 2px solid $color-blue-light;
+                        cursor: text;
+                        &::placeholder {
+                            color: #a4a4a4;
+                        }
+                        &.error {
+                            border: 2px solid #ff2200a1;
+                        }
+                    }
+                    textarea {
+                        min-height: 36px;
+                        padding: 8px;
+                        min-width: 100%;
+                        background: transparent;
+                        color: $color-white;
+                        border: 2px solid $color-blue-light;
+                        border-radius: 4px;
+                        overflow-y: hidden;
+                        resize: none;
+                        &.error {
+                            border: 2px solid #ff2200a1;
+                        }
+                    }
+                }
+            }
+            .confirm {
+                button {
+                    height: 28px;
+                    width: 100%;
+                    background: $color-blue-light;
+                    color: $color-white;
+                    cursor: pointer;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    border-radius: 4px;
+                    padding: 3px 13px;
+                    border: 2px solid transparent;
+                    transition: 0.2s linear;
+                    &:hover {
+                        filter: brightness(1.2);
+                    }
+                }
+            }
+        } 
+        .mails_list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            width: 100%;
+            margin-top: 128px;
+            .mail {
+                height: 72px;
+                width: 100%;
+                background: #ffffff10;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 0 32px;
+                cursor: pointer;
+                transition: 0.2s linear;
+                &:hover {
+                    transform: translateY(-5px);
+                    background: #ffffff15;
+                    box-shadow: 0 0px 5px 2px #272e347b;
+                }
+                .left {
+                    display: flex;
+                    gap: 32px;
+                    align-items: center;
+                    img {
+                        height: 48px;
+                    }
+                    span {
+                        color: $color-blue-light;
+                        font-weight: 600;
+                        font-size: 18px;
+                        white-space: nowrap;
+                    }
+                }
+                .right {
+                    display: flex;
+                    gap: 32px;
+                    width: -webkit-fill-available;
+                    justify-content: flex-end;
+                    h2 {
+                        font-size: 17px;
+                        text-transform: uppercase;
+                        color: $color-white;
+                    }
+                    p {
+                        color: #a4a4a4;
+                        font-size: 12px;
+                        font-weight: 600;
+                    }
+                    button {
+                        height: 20px;
+                        width: 128px;
+                        font-weight: 600;
+                        background: $color-blue-light;
+                        border-radius: 4px;
+                        color: $color-white;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
     .db_orders {
         width: 100%;
         display: flex;
@@ -815,7 +998,7 @@ section.main {
     }
     .db_selection,
     .db_orders,
-    .db_create {
+    .db_create, .db_mails {
         display: none;
         &.show {
             display: flex;
@@ -840,10 +1023,10 @@ section.main {
 
 @media screen and (max-width: 1000px) {
     section.main {
-        .db_orders {
-            .orders {
+        .db_orders, .db_mails {
+            .orders, .mails_list {
                 width: 100%;
-                .order {
+                .order, .mail {
                     height: 115px;
                     .left {
                         display: none;
