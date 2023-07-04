@@ -24,6 +24,14 @@ if (route != "") {
         document.body.innerHTML = html;
     });
 }
+function delOrder(orderKey, userKey) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const database_ref = rdb.ref();
+        yield database_ref.child(`users/${userKey}/orders/${orderKey}`).remove();
+        const removedOrder = document.getElementById(orderKey);
+        removedOrder.remove();
+    });
+}
 window.setTimeout(() => {
     if (!route.includes("dashboard"))
         return;
@@ -148,7 +156,7 @@ function loadOrders() {
                     </div>
                     <div>
                         <h2>Confirmed</h2>
-                        <p>Waiting...</p>
+                        <p>${childData.confirmed}</p>
                     </div>
                     <div>
                         <h2>Type</h2>
@@ -156,7 +164,7 @@ function loadOrders() {
                     </div>
                     <div>
                         <h2>Cost</h2>
-                        <p>Waiting...</p>
+                        <p>${childData.cost}</p>
                     </div>
                 </div>`;
             orders.appendChild(order);
@@ -173,8 +181,10 @@ function loadAllOrders() {
             database_ref.child(`users/${childKey}/orders`).once("value", function (orderSnapshot) {
                 orderSnapshot.forEach(function (orderChildSnapshot) {
                     const orders = document.querySelector('.orders');
+                    const orderKey = orderChildSnapshot.key;
                     const order = document.createElement('div');
                     order.classList.add('order');
+                    order.id = orderKey;
                     order.innerHTML = `
                         <div class="left">
                             <span>${childAuthor} | ${childAuthorNickname}</span>
@@ -194,7 +204,7 @@ function loadAllOrders() {
                             </div>
                             <div>
                                 <h2>Confirmed</h2>
-                                <p>Waiting...</p>
+                                <p>${orderChildSnapshot.val().confirmed}</p>
                             </div>
                             <div>
                                 <h2>Type</h2>
@@ -202,7 +212,11 @@ function loadAllOrders() {
                             </div>
                             <div>
                                 <h2>Cost</h2>
-                                <p>Waiting...</p>
+                                <p>${orderChildSnapshot.val().cost}</p>
+                            </div>
+                            <div>
+                                <h2>Delete</h2>
+                                <button onclick="delOrder('${orderKey}', '${childKey}')"><i class="fas fa-trash"></i> Delete</button>
                             </div>
                         </div>`;
                     orders.appendChild(order);
@@ -293,7 +307,9 @@ window.setTimeout(() => {
             colors: colors,
             description: description,
             date: currentDate,
-            time: currentTime
+            time: currentTime,
+            cost: 'Waiting...',
+            confirmed: 'Waiting...'
         };
         yield database_ref.child(`users/${user.uid}/orders/${random}`).set(order_data);
         defaults();

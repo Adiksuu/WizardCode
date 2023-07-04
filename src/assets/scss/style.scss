@@ -873,6 +873,16 @@ section.main {
                         font-size: 12px;
                         font-weight: 600;
                     }
+                    button {
+                        height: 20px;
+                        width: 100%;
+                        font-weight: 600;
+                        background: $color-blue-light;
+                        border-radius: 4px;
+                        padding: 0px 9px;
+                        color: $color-white;
+                        cursor: pointer;
+                    }
                 }
             }
         }

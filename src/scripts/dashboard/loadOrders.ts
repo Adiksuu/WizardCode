@@ -46,7 +46,7 @@ function loadOrders() {
                     </div>
                     <div>
                         <h2>Confirmed</h2>
-                        <p>Waiting...</p>
+                        <p>${childData.confirmed}</p>
                     </div>
                     <div>
                         <h2>Type</h2>
@@ -54,7 +54,7 @@ function loadOrders() {
                     </div>
                     <div>
                         <h2>Cost</h2>
-                        <p>Waiting...</p>
+                        <p>${childData.cost}</p>
                     </div>
                 </div>`;
 
@@ -76,9 +76,12 @@ function loadAllOrders() {
                 orderSnapshot.forEach(function (orderChildSnapshot: any) {
                     const orders = document.querySelector('.orders');
 
+                    const orderKey = orderChildSnapshot.key;
+
                     const order = document.createElement('div');
 
                     order.classList.add('order');
+                    order.id = orderKey
 
                     order.innerHTML = `
                         <div class="left">
@@ -99,7 +102,7 @@ function loadAllOrders() {
                             </div>
                             <div>
                                 <h2>Confirmed</h2>
-                                <p>Waiting...</p>
+                                <p>${orderChildSnapshot.val().confirmed}</p>
                             </div>
                             <div>
                                 <h2>Type</h2>
@@ -107,7 +110,11 @@ function loadAllOrders() {
                             </div>
                             <div>
                                 <h2>Cost</h2>
-                                <p>Waiting...</p>
+                                <p>${orderChildSnapshot.val().cost}</p>
+                            </div>
+                            <div>
+                                <h2>Delete</h2>
+                                <button onclick="delOrder('${orderKey}', '${childKey}')"><i class="fas fa-trash"></i> Delete</button>
                             </div>
                         </div>`;
 

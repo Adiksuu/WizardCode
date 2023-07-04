@@ -857,6 +857,16 @@ section.main .db_orders .orders .order .right p {
   font-size: 12px;
   font-weight: 600;
 }
+section.main .db_orders .orders .order .right button {
+  height: 20px;
+  width: 100%;
+  font-weight: 600;
+  background: #0084ff;
+  border-radius: 4px;
+  padding: 0px 9px;
+  color: #fff;
+  cursor: pointer;
+}
 section.main .db_create {
   width: 100%;
   display: flex;

@@ -99,7 +99,9 @@ window.setTimeout(() => {
             colors: colors,
             description: description,
             date: currentDate,
-            time: currentTime
+            time: currentTime,
+            cost: 'Waiting...',
+            confirmed: 'Waiting...'
         };
 
         await database_ref.child(`users/${user.uid}/orders/${random}`).set(order_data)
