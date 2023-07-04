@@ -1082,6 +1082,12 @@ section.main .db_create.show, section.main .db_mails.show {
   section.main .db_create .order_box .select div button {
     width: 128px;
   }
+  section.main .db_mails .mail_box {
+    width: calc(100% - 16px);
+  }
+  section.main .db_mails .mail_box .select div {
+    flex-wrap: wrap;
+  }
 }
 .loading {
   background: #0a1128;
