@@ -47,12 +47,22 @@ window.setTimeout(() => {
 function login(email: String, password: String) {
     auth.signInWithEmailAndPassword(email, password)
         .then(function () {
+            showPopup('SUCCESS', 'You have successfully logged in! Do not refresh the page, you will be automatically redirected after logging in', 'check-circle', 'success')
             toSite("dashboard");
         })
         .catch(function (error: any) {
             let error_code = error.code;
             let error_message = error.message;
 
-            console.log(error_code, error_message);
+            if (error_code === "auth/wrong-password") {
+                showPopup('ERROR', 'Wrong password', 'times-circle', 'error')
+            } else if (error_code === "auth/invalid-email") {
+                showPopup('ERROR', 'Wrong email', 'times-circle', 'error')
+            } else if (error_code === "auth/user-not-found") {
+                showPopup('ERROR', 'User cannot be found', 'times-circle', 'error')
+            } else {
+                showPopup('ERROR', 'Something went wrong... Check console', 'times-circle', 'error')
+                console.error(error_message);
+            }
         });
 }

@@ -337,6 +337,8 @@ function db(selection) {
     }
 }
 setTimeout(() => {
+    if (!route.includes('dashboard'))
+        return;
     if (auth.currentUser) {
         const email = auth.currentUser.email;
         if (email == 'codeadiksuu@gmail.com') {
@@ -389,6 +391,31 @@ window.setTimeout(() => {
     const loading = document.querySelector('.loading');
     loading.classList.add('hide');
 }, 2500);
+function hidePopup() {
+    const popup = document.querySelector('.important_popup');
+    popup.style.opacity = '0';
+    window.setTimeout(() => {
+        popup.remove();
+    }, 250);
+}
+function showPopup(status, popupInfo, icon, color) {
+    if (route.includes('register') || route.includes('login')) {
+        const popup = document.createElement('div');
+        popup.classList.add('important_popup');
+        popup.innerHTML = `
+        <div class="bg_blur"></div>
+        <div class="popup ${color}">
+        <h3><i class="fas fa-${icon}"></i></h3>
+        <span>${status}</span>
+        <p>${popupInfo}</p>
+        <button class="ripple" id="hidePopup">Continue</button>
+        </div>`;
+        const main = document.querySelector('.main');
+        main.appendChild(popup);
+        const hidePopupBtn = document.querySelector('#hidePopup');
+        hidePopupBtn.addEventListener('click', hidePopup);
+    }
+}
 window.addEventListener("scroll", reveal);
 function reveal() {
     var reveals = document.querySelectorAll(".reveal");
@@ -502,12 +529,25 @@ window.setTimeout(() => {
 function login(email, password) {
     auth.signInWithEmailAndPassword(email, password)
         .then(function () {
+        showPopup('SUCCESS', 'You have successfully logged in! Do not refresh the page, you will be automatically redirected after logging in', 'check-circle', 'success');
         toSite("dashboard");
     })
         .catch(function (error) {
         let error_code = error.code;
         let error_message = error.message;
-        console.log(error_code, error_message);
+        if (error_code === "auth/wrong-password") {
+            showPopup('ERROR', 'Wrong password', 'times-circle', 'error');
+        }
+        else if (error_code === "auth/invalid-email") {
+            showPopup('ERROR', 'Wrong email', 'times-circle', 'error');
+        }
+        else if (error_code === "auth/user-not-found") {
+            showPopup('ERROR', 'User cannot be found', 'times-circle', 'error');
+        }
+        else {
+            showPopup('ERROR', 'Something went wrong... Check console', 'times-circle', 'error');
+            console.error(error_message);
+        }
     });
 }
 function registerCheck() {
@@ -569,6 +609,7 @@ function register(email, password, nickname) {
                 password: password,
                 nickname: nickname
             };
+            showPopup('SUCCESS', 'You have been successfully registered! Do not refresh the page, you will be automatically redirected after registration', 'check-circle', 'success');
             yield database_ref.child(`users/${user.uid}`).set(user_data);
             toSite('dashboard');
         });
@@ -576,7 +617,22 @@ function register(email, password, nickname) {
         .catch(function (error) {
         let error_code = error.code;
         let error_message = error.message;
-        console.log(error_code, error_message);
+        if (error_code === "auth/wrong-password") {
+            showPopup('ERROR', 'Wrong password', 'times-circle', 'error');
+        }
+        else if (error_code === "auth/invalid-email") {
+            showPopup('ERROR', 'Wrong email', 'times-circle', 'error');
+        }
+        else if (error_code === "auth/user-not-found") {
+            showPopup('ERROR', 'User cannot be found', 'times-circle', 'error');
+        }
+        else if (error_code === "auth/email-already-in-use") {
+            showPopup('ERROR', 'This email is already used', 'times-circle', 'error');
+        }
+        else {
+            showPopup('ERROR', 'Something went wrong... Check console', 'times-circle', 'error');
+            console.error(error_message);
+        }
     });
 }
 //# sourceMappingURL=app.js.map

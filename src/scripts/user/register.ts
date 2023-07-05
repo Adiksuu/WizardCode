@@ -63,7 +63,7 @@ function register(email: String, password: String, nickname: String) {
                 password: password,
                 nickname: nickname
             };
-
+            showPopup('SUCCESS', 'You have been successfully registered! Do not refresh the page, you will be automatically redirected after registration', 'check-circle', 'success')
             await database_ref.child(`users/${user.uid}`).set(user_data);
             toSite('dashboard')
         })
@@ -71,6 +71,17 @@ function register(email: String, password: String, nickname: String) {
             let error_code = error.code;
             let error_message = error.message;
 
-            console.log(error_code, error_message)
+            if (error_code === "auth/wrong-password") {
+                showPopup('ERROR', 'Wrong password', 'times-circle', 'error')
+            } else if (error_code === "auth/invalid-email") {
+                showPopup('ERROR', 'Wrong email', 'times-circle', 'error')
+            } else if (error_code === "auth/user-not-found") {
+                showPopup('ERROR', 'User cannot be found', 'times-circle', 'error')
+            } else if (error_code === "auth/email-already-in-use") {
+                showPopup('ERROR', 'This email is already used', 'times-circle', 'error')
+            } else {
+                showPopup('ERROR', 'Something went wrong... Check console', 'times-circle', 'error')
+                console.error(error_message);
+            }
         });
 }

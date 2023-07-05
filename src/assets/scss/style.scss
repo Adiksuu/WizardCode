@@ -596,9 +596,7 @@ section.main {
             }
         }
         .user_tier {
-            position: absolute;
-            bottom: 16px;
-            display: none;
+            margin-top: 16px;
             &.show {
                 display: block;
             }
@@ -1014,6 +1012,88 @@ section.main {
             display: flex;
         }
     }
+    .important_popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        transition: .3s linear;
+        .bg_blur {
+            backdrop-filter: blur(5px);
+            background: #ffffff15;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .popup {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            flex-direction: column;
+            z-index: 1;
+            background: #ffffff25;
+            width: 356px;
+            height: 200px;
+            padding: 16px;
+            border-radius: 4px;
+            opacity: 1;
+            box-shadow: 0 0px 10px 2px #272e3456;
+            &.error {
+                h3 i, span {
+                    color: #ff3d3d;
+                }
+                button {
+                    background: #ff3d3d;
+                    transition: .2s linear;
+                    &:hover {
+                        filter: brightness(1.3);
+                    }
+                }
+            }
+            h3 {
+                i {
+                    font-size: 2rem;
+                    color: $color-blue-light;
+                }
+            }
+            span {
+                font-weight: 700;
+                text-transform: uppercase;
+                color: $color-blue-light;
+                margin-top: 4px;
+                font-size: 18px;
+            }
+            p {
+                margin-top: 12px;
+                color: $color-black;
+                font-weight: 600;
+                text-align: center;
+                font-size: 15px;
+            }
+            button {
+                height: 32px;
+                width: 128px;
+                margin-top: 8px;
+                border-radius: 4px;
+                background: $color-blue-light;
+                color: $color-white;
+                text-transform: uppercase;
+                font-weight: 600;
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+            }
+        }
+    }
 }
 
 ::-webkit-scrollbar {
@@ -1120,6 +1200,16 @@ section.main {
                         button {
                             width: 128px;
                         }
+                    }
+                }
+            }
+        }
+        .db_mails {
+            .mail_box {
+                width: calc(100% - 16px);
+                .select {
+                    div {
+                        flex-wrap: wrap;
                     }
                 }
             }

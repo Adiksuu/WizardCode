@@ -21,6 +21,9 @@ function db(selection: string) {
 }
 
 setTimeout(() => {
+
+    if (!route.includes('dashboard')) return
+
     if (auth.currentUser) {
         const email: String = auth.currentUser.email
 
