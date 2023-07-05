@@ -25,7 +25,7 @@ setTimeout(() => {
     if (!route.includes('dashboard')) return
 
     if (auth.currentUser) {
-        const email: String = auth.currentUser.email
+        const email: string = auth.currentUser.email
 
         if (email == 'codeadiksuu@gmail.com') {
             const user_tier: HTMLDivElement = document.querySelector('.user_tier')

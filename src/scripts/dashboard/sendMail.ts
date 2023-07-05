@@ -7,6 +7,13 @@ setTimeout(() => {
     const mailConfirm: HTMLButtonElement = document.querySelector('.confirmMail')
 
     mailConfirm.addEventListener('click', async () => {
+
+        if (!auth.currentUser.emailVerified) {
+            showPopup('ERROR', "Sorry but you can't send a mail, you must verify your account before. A verification link has been sent to your email", 'times-circle', 'error')
+            auth.currentUser.sendEmailVerification()
+            return
+        }
+
         if (mailTitle.value == '' && mailMessage.value == '') return
 
         let user = auth.currentUser;

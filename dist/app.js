@@ -24,6 +24,14 @@ if (route != "") {
         document.body.innerHTML = html;
     });
 }
+function delMail(mailKey) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const database_ref = rdb.ref();
+        yield database_ref.child(`mails/${mailKey}`).remove();
+        const removedOrder = document.getElementById(mailKey);
+        removedOrder.remove();
+    });
+}
 function delOrder(orderKey, userKey) {
     return __awaiter(this, void 0, void 0, function* () {
         const database_ref = rdb.ref();
@@ -80,10 +88,11 @@ function loadAllMails() {
     database_ref.child(`mails/`).once("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
             const childData = childSnapshot.val();
+            const mailKey = childSnapshot.key;
             const mails = document.querySelector('.mails_list');
             const mail = document.createElement('div');
-            mail.classList.add('order');
             mail.classList.add('mail');
+            mail.id = mailKey;
             mail.innerHTML = `
                 <div class="left">
                     <img src="../../src/assets/images/logo.png" alt=""/>
@@ -100,6 +109,10 @@ function loadAllMails() {
                     <div>
                         <h2>Message</h2>
                         <button onclick="copyMailMessage('${childData.message}')">Click to copy</button>
+                    </div>
+                    <div>
+                        <h2>Delete</h2>
+                        <button onclick="delMail('${mailKey}')"><i class="fas fa-trash"></i> Delete</button>
                     </div>
                 </div>`;
             mails.appendChild(mail);
@@ -274,6 +287,11 @@ window.setTimeout(() => {
     }
     const confirmButton = document.querySelector('.confirmOrder');
     confirmButton.addEventListener('click', () => __awaiter(this, void 0, void 0, function* () {
+        if (!auth.currentUser.emailVerified) {
+            showPopup('ERROR', "Sorry but you can't make an order, you must verify your account before. A verification link has been sent to your email", 'times-circle', 'error');
+            auth.currentUser.sendEmailVerification();
+            return;
+        }
         const actives = document.querySelectorAll('.active');
         const mode = actives[0].textContent;
         const type = actives[1].textContent;
@@ -354,6 +372,11 @@ setTimeout(() => {
     const mailMessage = document.querySelector('#mailMessage');
     const mailConfirm = document.querySelector('.confirmMail');
     mailConfirm.addEventListener('click', () => __awaiter(this, void 0, void 0, function* () {
+        if (!auth.currentUser.emailVerified) {
+            showPopup('ERROR', "Sorry but you can't send a mail, you must verify your account before. A verification link has been sent to your email", 'times-circle', 'error');
+            auth.currentUser.sendEmailVerification();
+            return;
+        }
         if (mailTitle.value == '' && mailMessage.value == '')
             return;
         let user = auth.currentUser;
@@ -399,7 +422,7 @@ function hidePopup() {
     }, 250);
 }
 function showPopup(status, popupInfo, icon, color) {
-    if (route.includes('register') || route.includes('login')) {
+    if (route.includes('register') || route.includes('login') || route.includes('dashboard')) {
         const popup = document.createElement('div');
         popup.classList.add('important_popup');
         popup.innerHTML = `

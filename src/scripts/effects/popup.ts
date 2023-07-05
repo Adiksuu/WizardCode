@@ -10,7 +10,7 @@ function hidePopup() {
 
 function showPopup(status: string, popupInfo: string, icon: string, color: string) {
 
-    if (route.includes('register') || route.includes('login')) {
+    if (route.includes('register') || route.includes('login') || route.includes('dashboard')) {
 
         const popup = document.createElement('div');
         

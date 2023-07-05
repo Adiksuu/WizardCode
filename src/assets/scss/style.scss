@@ -597,6 +597,7 @@ section.main {
         }
         .user_tier {
             margin-top: 16px;
+            display: none;
             &.show {
                 display: block;
             }

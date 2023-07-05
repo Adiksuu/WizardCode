@@ -60,14 +60,14 @@ function loadAllMails() {
     database_ref.child(`mails/`).once("value", function (snapshot: any) {
         snapshot.forEach(function (childSnapshot: any) {
             const childData = childSnapshot.val();  
+            const mailKey = childSnapshot.key;
 
             const mails = document.querySelector('.mails_list');
 
             const mail = document.createElement('div');
-
-            mail.classList.add('order');
-
+            
             mail.classList.add('mail')
+            mail.id = mailKey
 
             mail.innerHTML = `
                 <div class="left">
@@ -85,6 +85,10 @@ function loadAllMails() {
                     <div>
                         <h2>Message</h2>
                         <button onclick="copyMailMessage('${childData.message}')">Click to copy</button>
+                    </div>
+                    <div>
+                        <h2>Delete</h2>
+                        <button onclick="delMail('${mailKey}')"><i class="fas fa-trash"></i> Delete</button>
                     </div>
                 </div>`
 

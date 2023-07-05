@@ -59,6 +59,13 @@ window.setTimeout(() => {
     const confirmButton: HTMLButtonElement = document.querySelector('.confirmOrder')
 
     confirmButton.addEventListener('click', async () => {
+
+        if (!auth.currentUser.emailVerified) {
+            showPopup('ERROR', "Sorry but you can't make an order, you must verify your account before. A verification link has been sent to your email", 'times-circle', 'error')
+            auth.currentUser.sendEmailVerification()
+            return
+        }
+
         const actives = document.querySelectorAll('.active')
 
         const mode: String = actives[0].textContent
