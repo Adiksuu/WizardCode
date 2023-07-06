@@ -4,6 +4,8 @@
 - Register or Login to dashboard
 - Go to the "Make order" Tab
 - Select features
+- Describe your website
+- Click continue button
 
 # 💎 Layout
 ![image](https://github.com/Adiksuu/WizardCode/assets/75419729/623f7362-6518-48c9-a9d7-fea5eee1b5e0)
